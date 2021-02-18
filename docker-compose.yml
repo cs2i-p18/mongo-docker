@@ -1,0 +1,45 @@
+version: '3.8'
+
+# ====================================================
+# SERVICES
+# ====================================================
+
+services:
+
+  # --------------------------------------------------
+  # MONGODB
+  # --------------------------------------------------
+
+  mongodb:
+    image: mongo:4.4-bionic
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - ${MONGO_PORT}:27017
+
+  # --------------------------------------------------
+  # MONGO EXPRESS
+  # --------------------------------------------------
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - ${MONGO_EXPRESS_PORT}:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+
+# ====================================================
+# VOLUMES
+# ====================================================
+
+volumes:
+  mongo_data:
+  mongo_config:
