@@ -11,7 +11,7 @@ services:
   # --------------------------------------------------
 
   mongodb:
-    image: mongo:4.4-bionic
+    image: mongo:5.0-focal
     restart: always
     volumes:
       - mongo_data:/data/db
