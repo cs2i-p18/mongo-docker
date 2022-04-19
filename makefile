@@ -19,4 +19,4 @@ shell:
 
 mongo:
 	# Start Mongo command line inside container
-	@docker-compose exec mongodb mongo --host mongodb --username ${USER} --password ${PASSWORD}
+	@docker-compose exec mongodb mongosh --host mongodb --username ${USER} --password ${PASSWORD}
