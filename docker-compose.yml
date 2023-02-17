@@ -11,7 +11,7 @@ services:
   # --------------------------------------------------
 
   mongodb:
-    image: mongo:5.0-focal
+    image: ${MONGO_IMAGE}
     restart: always
     volumes:
       - mongo_data:/data/db
